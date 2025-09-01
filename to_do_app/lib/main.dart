@@ -121,11 +121,15 @@
 //   }
 // }
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+// ignore_for_file: deprecated_member_use
+>>>>>>> 19e7e30 (upadates on tasknest)
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -357,6 +361,7 @@ class _TodoHomePageState extends State<TodoHomePage> with SingleTickerProviderSt
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
+<<<<<<< HEAD
         return _buildTaskForm(context, null);
       },
     );
@@ -433,6 +438,45 @@ class _TodoHomePageState extends State<TodoHomePage> with SingleTickerProviderSt
                       ),
                       const SizedBox(width: 8),
                       Text(
+=======
+        return SingleChildScrollView(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Container(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'Add New Task',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 20),
+                TextField(
+                  controller: _titleController,
+                  decoration: const InputDecoration(
+                    labelText: 'Title',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                TextField(
+                  controller: _descriptionController,
+                  decoration: const InputDecoration(
+                    labelText: 'Description (optional)',
+                    border: OutlineInputBorder(),
+                  ),
+                  maxLines: 3,
+                ),
+                const SizedBox(height: 15),
+                DropdownButtonFormField<Priority>(
+                  initialValue: _selectedPriority,
+                  items: Priority.values.map((Priority priority) {
+                    return DropdownMenuItem<Priority>(
+                      value: priority,
+                      child: Text(
+>>>>>>> 19e7e30 (upadates on tasknest)
                         priority.toString().split('.').last.toUpperCase(),
                         style: TextStyle(
                           color: _getPriorityColor(priority),
@@ -515,6 +559,7 @@ class _TodoHomePageState extends State<TodoHomePage> with SingleTickerProviderSt
                     ),
                   ),
                 ),
+<<<<<<< HEAD
                 if (_selectedDueDate != null)
                   IconButton(
                     icon: const Icon(Icons.clear),
@@ -550,6 +595,27 @@ class _TodoHomePageState extends State<TodoHomePage> with SingleTickerProviderSt
                           ? 'Set Reminder'
                           : 'Remind: ${DateFormat('MMM dd, yyyy').format(_selectedReminderDate!)}',
                     ),
+=======
+                const SizedBox(height: 15),
+                DropdownButtonFormField<String>(
+                  initialValue: _categoryController.text.isEmpty
+                      ? categories[0]
+                      : _categoryController.text,
+                  items: categories.map((String category) {
+                    return DropdownMenuItem<String>(
+                      value: category,
+                      child: Text(category),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _categoryController.text = newValue!;
+                    });
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Category',
+                    border: OutlineInputBorder(),
+>>>>>>> 19e7e30 (upadates on tasknest)
                   ),
                 ),
                 if (_selectedReminderDate != null)
@@ -704,7 +770,175 @@ class _TodoHomePageState extends State<TodoHomePage> with SingleTickerProviderSt
       context: context,
       isScrollControlled: true,
       builder: (BuildContext context) {
+<<<<<<< HEAD
         return _buildTaskForm(context, _todoItems[index]);
+=======
+        return SingleChildScrollView(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Container(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'Edit Task',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 20),
+                TextField(
+                  controller: _titleController,
+                  decoration: const InputDecoration(
+                    labelText: 'Title',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                TextField(
+                  controller: _descriptionController,
+                  decoration: const InputDecoration(
+                    labelText: 'Description (optional)',
+                    border: OutlineInputBorder(),
+                  ),
+                  maxLines: 3,
+                ),
+                const SizedBox(height: 15),
+                DropdownButtonFormField<Priority>(
+                  initialValue: _selectedPriority,
+                  items: Priority.values.map((Priority priority) {
+                    return DropdownMenuItem<Priority>(
+                      value: priority,
+                      child: Text(
+                        priority.toString().split('.').last.toUpperCase(),
+                        style: TextStyle(
+                          color: _getPriorityColor(priority),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (Priority? newValue) {
+                    setState(() {
+                      _selectedPriority = newValue!;
+                    });
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Priority',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                DropdownButtonFormField<String>(
+                  initialValue: _categoryController.text.isEmpty
+                      ? categories[0]
+                      : _categoryController.text,
+                  items: categories.map((String category) {
+                    return DropdownMenuItem<String>(
+                      value: category,
+                      child: Text(category),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _categoryController.text = newValue!;
+                    });
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Category',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextButton.icon(
+                        onPressed: () async {
+                          final DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: _selectedDueDate ?? DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(2100),
+                          );
+                          if (pickedDate != null) {
+                            setState(() {
+                              _selectedDueDate = pickedDate;
+                            });
+                          }
+                        },
+                        icon: const Icon(Icons.calendar_today),
+                        label: Text(
+                          _selectedDueDate == null
+                              ? 'Set Due Date'
+                              : 'Due: ${_selectedDueDate!.toString().split(' ')[0]}',
+                        ),
+                      ),
+                    ),
+                    if (_selectedDueDate != null)
+                      IconButton(
+                        icon: const Icon(Icons.clear),
+                        onPressed: () {
+                          setState(() {
+                            _selectedDueDate = null;
+                          });
+                        },
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Cancel'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (_titleController.text.isNotEmpty) {
+                          setState(() {
+                            _todoItems[index] = TodoItem(
+                              id: item.id,
+                              title: _titleController.text,
+                              description: _descriptionController.text,
+                              isCompleted: item.isCompleted,
+                              createdDate: item.createdDate,
+                              dueDate: _selectedDueDate,
+                              priority: _selectedPriority,
+                              category: _categoryController.text.isEmpty
+                                  ? categories[0]
+                                  : _categoryController.text,
+                            );
+                            _saveTodoItems();
+                          });
+
+                          _titleController.clear();
+                          _descriptionController.clear();
+                          _categoryController.clear();
+                          _selectedDueDate = null;
+                          _selectedPriority = Priority.medium;
+
+                          Navigator.pop(context);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Task updated successfully!'),
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
+                        }
+                      },
+                      child: const Text('Update Task'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+>>>>>>> 19e7e30 (upadates on tasknest)
       },
     );
   }
@@ -1012,9 +1246,17 @@ class _TodoHomePageState extends State<TodoHomePage> with SingleTickerProviderSt
         ],
       ),
       child: Card(
+<<<<<<< HEAD
         margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         color: item.isCompleted
             ? Theme.of(context).colorScheme.surfaceContainerHighest
+=======
+        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        color: isCompleted
+            ? Theme.of(
+                context,
+              ).colorScheme.surfaceContainerHighest.withOpacity(0.5)
+>>>>>>> 19e7e30 (upadates on tasknest)
             : null,
         elevation: 1,
         shape: RoundedRectangleBorder(
