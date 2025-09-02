@@ -1,0 +1,49 @@
+name: tasknest
+description: A beautiful task and habit tracking app
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  sqflite: ^2.3.0
+  path: ^1.8.3
+  path_provider: ^2.1.1
+  flutter_local_notifications: ^19.4.1
+  fl_chart: ^0.61.0
+  percent_indicator: ^4.2.2
+  provider: ^6.0.5
+  shared_preferences: ^2.2.2
+  intl: ^0.20.2
+  flutter_quill: ^11.4.2
+  url_launcher: ^6.1.11
+  lottie: ^3.3.1
+  shimmer: ^3.0.0
+  confetti: ^0.8.0
+  timezone: ^0.10.1
+  table_calendar: ^3.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icons/
+    - assets/stickers/
+    - assets/animations/
+
+
+dependency_overrides:
+  fl_chart:
+    git:
+      url: https://github.com/imaNNeo/fl_chart.git
+      ref: main # or specific commit
